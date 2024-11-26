@@ -11,9 +11,16 @@ def bin_search(target, collection) -> bool:
     if collection[middle] == target:
         return True
     elif collection[middle] > target:
+        # recall yourself
         return bin_search(target, collection[first:middle])
     elif collection[middle] < target:
+        # recall yourself
         return bin_search(target, collection[middle+1:])
     else:return False
 
-print(bin_search(5, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+collection = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+def get_input() -> int:
+    return int(input("Enter the search term (must be an integer) here: "))
+
+print(bin_search(get_input(), collection))

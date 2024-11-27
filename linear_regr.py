@@ -6,6 +6,7 @@ def regr(x):
     y_pred = (m * x) + c
     return round(y_pred, 2)
 
+
 def gradient(X, Y):
     # Compute coefficient m's
     x_mean = mean(X)
@@ -23,22 +24,23 @@ def gradient(X, Y):
         x_dev_square.append(x_dev[i]**2)
     sum_xy_dev = sum(xy_dev)
     sum_x_dev_square = sum(x_dev_square)
-
     if sum_x_dev_square == 0:
         raise ValueError("Zero division is not allowed")
-
     return sum_xy_dev / sum_x_dev_square
+
 
 def intercept(X, Y, slope):
     x_mean = mean(X)
     y_mean = mean(Y)
     return y_mean - (x_mean * slope)
 
+
 def deviation(A, b):
     dev = []
     for a in A:
         dev.append(a - b)
     return dev
+
 
 def mean(args):
     if len(args) < 1:
@@ -49,6 +51,7 @@ def mean(args):
     args_length = len(args)
     args_mean = sum(args_fx) / args_length
     return args_mean
+
 
 try:
     age = int(input("Please, enter your age here for weight prediction: "))

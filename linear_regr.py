@@ -1,7 +1,13 @@
-def regr():
-    pass
+def regr(x):
+    ages = [12, 13, 16, 19, 13, 14, 17, 18, 14, 16]
+    weights = [50, 55, 48, 58, 59, 55, 49, 52, 42, 56]
+    m = gradient(ages, weights)
+    c = intercept(ages, weights, m)
+    y_pred = (m * x) + c
+    return round(y_pred, 2)
 
 def gradient(X, Y):
+    # Compute coefficient m's
     x_mean = mean(X)
     y_mean = mean(Y)
     # compute the difference between x and x_mean, y and y_mean
@@ -23,8 +29,10 @@ def gradient(X, Y):
 
     return sum_xy_dev / sum_x_dev_square
 
-def intercept(x, y, m):
-    return y - m * x
+def intercept(X, Y, slope):
+    x_mean = mean(X)
+    y_mean = mean(Y)
+    return y_mean - (x_mean * slope)
 
 def deviation(A, b):
     dev = []
@@ -42,7 +50,9 @@ def mean(args):
     args_mean = sum(args_fx) / args_length
     return args_mean
 
-age = [12, 13, 16, 19, 13, 14, 17, 18, 14, 16]
-weight = [50, 55, 48, 58, 59, 55, 49, 52, 42, 56]
-
-print(gradient(age, weight))
+try:
+    age = int(input("Please, enter your age here for weight prediction: "))
+except ValueError as e:
+    print("Invalid value entered")
+else:
+    print(regr(age))
